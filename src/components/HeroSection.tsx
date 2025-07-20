@@ -1,8 +1,27 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 import { Vote, TrendingUp, Users, Clock } from "lucide-react";
 
 const HeroSection = () => {
+  const [hasVoted, setHasVoted] = useState(false);
+  const [votes, setVotes] = useState({ yes: 8734, no: 4113 });
+  
+  const totalVotes = votes.yes + votes.no;
+  const yesPercentage = Math.round((votes.yes / totalVotes) * 100);
+  const noPercentage = Math.round((votes.no / totalVotes) * 100);
+
+  const handleVote = (choice: 'yes' | 'no') => {
+    if (!hasVoted) {
+      setVotes(prev => ({
+        ...prev,
+        [choice]: prev[choice] + 1
+      }));
+      setHasVoted(true);
+    }
+  };
+
   return (
     <section className="relative bg-gradient-hero text-white overflow-hidden">
       <div className="absolute inset-0 bg-[url('/placeholder.svg')] bg-cover bg-center opacity-10" />
@@ -26,13 +45,17 @@ const HeroSection = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="secondary" size="lg" className="bg-white text-primary hover:bg-white/90">
-                <Vote className="h-5 w-5 mr-2" />
-                Start Early Voting
-              </Button>
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary">
-                Explore Latest News
-              </Button>
+              <Link to="/early-vote">
+                <Button variant="secondary" size="lg" className="w-full bg-white text-primary hover:bg-white/90">
+                  <Vote className="h-5 w-5 mr-2" />
+                  Start Early Voting
+                </Button>
+              </Link>
+              <a href="#latest-news">
+                <Button variant="outline" size="lg" className="w-full border-white text-white hover:bg-white hover:text-primary">
+                  Explore Latest News
+                </Button>
+              </a>
             </div>
 
             {/* Stats */}
@@ -46,7 +69,7 @@ const HeroSection = () => {
                 <div className="text-sm text-white/80">News Articles</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold">50K+</div>
+                <div className="text-2xl font-bold">{totalVotes.toLocaleString()}+</div>
                 <div className="text-sm text-white/80">Poll Votes</div>
               </div>
             </div>
@@ -60,18 +83,44 @@ const HeroSection = () => {
                   <div className="text-lg">
                     Do you believe Nigeria is ready for the 2027 elections?
                   </div>
-                  <div className="flex gap-3">
-                    <Button variant="vote-yes" className="flex-1">
-                      <TrendingUp className="h-4 w-4 mr-2" />
-                      Yes (68%)
-                    </Button>
-                    <Button variant="vote-no" className="flex-1">
-                      No (32%)
-                    </Button>
-                  </div>
+                  {!hasVoted ? (
+                    <div className="flex gap-3">
+                      <Button 
+                        variant="vote-yes" 
+                        className="flex-1 hover:scale-105 transition-transform"
+                        onClick={() => handleVote('yes')}
+                      >
+                        <TrendingUp className="h-4 w-4 mr-2" />
+                        Yes ({yesPercentage}%)
+                      </Button>
+                      <Button 
+                        variant="vote-no" 
+                        className="flex-1 hover:scale-105 transition-transform"
+                        onClick={() => handleVote('no')}
+                      >
+                        No ({noPercentage}%)
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="space-y-3">
+                      <div className="text-center text-lg font-semibold">Thank you for voting!</div>
+                      <div className="space-y-2">
+                        <div className="flex justify-between text-sm">
+                          <span>Yes: {yesPercentage}%</span>
+                          <span>No: {noPercentage}%</span>
+                        </div>
+                        <div className="w-full bg-white/20 rounded-full h-2">
+                          <div 
+                            className="bg-vote-yes h-2 rounded-full transition-all duration-500" 
+                            style={{ width: `${yesPercentage}%` }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
                   <div className="flex items-center justify-center text-sm text-white/80 mt-4">
                     <Users className="h-4 w-4 mr-2" />
-                    12,847 votes cast
+                    {totalVotes.toLocaleString()} votes cast
                   </div>
                 </div>
               </div>

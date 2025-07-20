@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { Link } from "react-router-dom";
 import { Users, TrendingUp, BarChart3 } from "lucide-react";
 
 const QuickPoll = () => {
@@ -70,10 +72,12 @@ const QuickPoll = () => {
                       <Users className="h-4 w-4 mr-2" />
                       {poll.totalVotes.toLocaleString()} total votes
                     </div>
-                    <Button variant="vote" size="sm">
-                      <TrendingUp className="h-4 w-4 mr-2" />
-                      Cast Your Vote
-                    </Button>
+                    <Link to="/early-vote">
+                      <Button variant="vote" size="sm">
+                        <TrendingUp className="h-4 w-4 mr-2" />
+                        Cast Your Vote
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </CardContent>

@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { 
   Menu, 
   Vote, 
@@ -15,31 +16,31 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
+          <Link to="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
             <Vote className="h-8 w-8 text-primary" />
             <div className="flex flex-col">
               <span className="text-lg font-bold text-primary">The Nigeria Election</span>
               <span className="text-xs text-muted-foreground">2027 Election Hub</span>
             </div>
-          </div>
+          </Link>
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
-            <a href="#" className="text-sm font-medium hover:text-primary transition-colors">
+            <Link to="/" className="text-sm font-medium hover:text-primary transition-colors">
               Latest News
-            </a>
-            <a href="#" className="text-sm font-medium hover:text-primary transition-colors">
+            </Link>
+            <a href="#trending-videos" className="text-sm font-medium hover:text-primary transition-colors">
               Trending Videos
             </a>
-            <a href="#" className="text-sm font-medium hover:text-primary transition-colors">
+            <Link to="/early-vote" className="text-sm font-medium hover:text-primary transition-colors">
               Early Vote
-            </a>
-            <a href="#" className="text-sm font-medium hover:text-primary transition-colors">
+            </Link>
+            <Link to="/projects" className="text-sm font-medium hover:text-primary transition-colors">
               Projects
-            </a>
-            <a href="#" className="text-sm font-medium hover:text-primary transition-colors">
+            </Link>
+            <Link to="/forum" className="text-sm font-medium hover:text-primary transition-colors">
               Forum
-            </a>
+            </Link>
           </nav>
 
           {/* Actions */}
@@ -51,9 +52,11 @@ const Header = () => {
               <User className="h-4 w-4" />
               Sign In
             </Button>
-            <Button variant="hero" size="sm">
-              Join the Conversation
-            </Button>
+            <Link to="/forum">
+              <Button variant="hero" size="sm">
+                Join the Conversation
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
