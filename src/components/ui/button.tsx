@@ -18,6 +18,13 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        // Nigerian Election Platform variants
+        hero: "bg-gradient-hero text-primary-foreground hover:shadow-elevated hover:scale-[1.02] transition-all duration-300",
+        breaking: "bg-news-breaking text-white hover:bg-news-breaking/90 shadow-interactive",
+        trending: "bg-news-trending text-white hover:bg-news-trending/90",
+        vote: "bg-vote-active text-white hover:bg-vote-active/90 hover:shadow-interactive transition-all duration-200",
+        "vote-yes": "bg-vote-yes text-white hover:bg-vote-yes/90 hover:scale-105 transition-all duration-200",
+        "vote-no": "bg-vote-no text-white hover:bg-vote-no/90 hover:scale-105 transition-all duration-200",
       },
       size: {
         default: "h-10 px-4 py-2",

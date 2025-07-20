@@ -26,7 +26,9 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					foreground: 'hsl(var(--primary-foreground))',
+					light: 'hsl(var(--primary-light))',
+					dark: 'hsl(var(--primary-dark))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -52,6 +54,19 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				// News platform specific colors
+				news: {
+					breaking: 'hsl(var(--news-breaking))',
+					trending: 'hsl(var(--news-trending))',
+					politics: 'hsl(var(--news-politics))',
+					neutral: 'hsl(var(--news-neutral))'
+				},
+				// Interactive voting colors
+				vote: {
+					yes: 'hsl(var(--vote-yes))',
+					no: 'hsl(var(--vote-no))',
+					active: 'hsl(var(--poll-active))'
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -62,6 +77,16 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				}
+			},
+			backgroundImage: {
+				'gradient-hero': 'var(--gradient-hero)',
+				'gradient-card': 'var(--gradient-card)', 
+				'gradient-accent': 'var(--gradient-accent)'
+			},
+			boxShadow: {
+				'card': 'var(--shadow-card)',
+				'elevated': 'var(--shadow-elevated)',
+				'interactive': 'var(--shadow-interactive)'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
